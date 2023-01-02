@@ -21,6 +21,21 @@ sensor:
     name: "Uptime"
   - platform: wifi_signal
     name: LED Strip WiFi Signal
+  - platform: template
+    name: "led_strip_red"
+    lambda: |-
+      float r, g, b; id(led_strip).current_values_as_rgb(&r, &g, &b); return r;
+    update_interval: 60s
+  - platform: template
+    name: "led_strip_green"
+    lambda: |-
+      float r, g, b; id(led_strip).current_values_as_rgb(&r, &g, &b); return g;
+    update_interval: 60s
+  - platform: template
+    name: "led_strip_blue"
+    lambda: |-
+      float r, g, b; id(led_strip).current_values_as_rgb(&r, &g, &b); return b;
+    update_interval: 60s
 
 time:
   - platform: sntp
