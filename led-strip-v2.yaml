@@ -19,6 +19,8 @@ esp32:
 sensor:
   - platform: uptime
     name: "Uptime"
+  - platform: wifi_signal
+    name: LED Strip WiFi Signal
 
 time:
   - platform: sntp
