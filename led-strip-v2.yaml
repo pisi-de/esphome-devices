@@ -393,7 +393,6 @@ wifi:
 
 api:
   reboot_timeout: 0s
-  password: !secret api_password
   encryption:
     key: !secret api_psk
 
