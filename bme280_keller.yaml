@@ -34,6 +34,15 @@ i2c:
   
 # https://lastminuteengineers.com/bme280-arduino-tutorial/
 sensor:
+  - platform: uptime
+    name: "Keller Uptime"
+#  - platform: wifi_signal
+#    name: "Keller WiFi Signal"
+#  - platform: template
+#    name: "Keller Free Memory"
+#    lambda: return heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024;
+#    unit_of_measurement: 'kB'
+#    state_class: measurement
   - platform: bme280
     temperature:
       name: "Keller Temperature"
@@ -44,3 +53,8 @@ sensor:
       name: "Keller Humidity"
     address: 0x76
     update_interval: 60s
+
+time:
+  - platform: sntp
+    id: esptime
+    timezone: "Europe/Berlin"
