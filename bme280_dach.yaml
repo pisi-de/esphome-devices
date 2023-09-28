@@ -1,0 +1,60 @@
+esphome:
+  name: dach
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "BME280-Dach"
+    password: !secret captive_portal_password
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret api_psk
+
+ota:
+  password: !secret ota_password
+
+i2c:
+  sda: GPIO4 #D2
+  scl: GPIO5 #D1
+  scan: True
+  frequency: 10kHz
+  id: bus_a
+  
+# https://lastminuteengineers.com/bme280-arduino-tutorial/
+sensor:
+  - platform: uptime
+    name: "Dach Uptime"
+#  - platform: wifi_signal
+#    name: "Dach WiFi Signal"
+#  - platform: template
+#    name: "Dach Free Memory"
+#    lambda: return heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024;
+#    unit_of_measurement: 'kB'
+#    state_class: measurement
+  - platform: bme280
+    temperature:
+      name: "Dach Temperature"
+      oversampling: 16x
+    pressure:
+      name: "Dach Pressure"
+    humidity:
+      name: "Dach Humidity"
+    address: 0x76
+    update_interval: 60s
+
+time:
+  - platform: sntp
+    id: esptime
+    timezone: "Europe/Berlin"
