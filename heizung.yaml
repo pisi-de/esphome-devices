@@ -29,7 +29,31 @@ dallas:
   - pin: D4
 
 sensor:
+  - platform: uptime
+    name: "Heizung Uptime"
+  - platform: wifi_signal
+    name: "Heizung WiFi Signal"
+  #- platform: template
+  #  name: "Heizung Free Memory"
+  #  lambda: return heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024;
+  #  unit_of_measurement: 'kB'
+  #  state_class: measurement
+  - platform: dallas
+    address: 0xca0722b159b6e828
+    name: "Heizung 1"
+  - platform: dallas
+    address: 0x990822b15bd09828
+    name: "Heizung 2"
+  - platform: dallas
+    address: 0xf90822b16fde1a28
+    name: "Heizung 3"
+  - platform: dallas
+    address: 0x010822b16508b628
+    name: "Heizung 4"
+  - platform: dallas
+    address: 0x1b0822b161e83928
+    name: "Heizung 5"
   - platform: dallas
     address: 0xee0722b154f9a528
-    name: "Heizung"
+    name: "Heizung 6"
     
