@@ -23,7 +23,8 @@ api:
     key: !secret api_psk
 
 ota:
-  password: !secret ota_password
+ - platform: esphome
+   password: !secret ota_password
 
 i2c:
   sda: GPIO4 #D2
