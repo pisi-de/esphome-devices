@@ -110,7 +110,7 @@ display:
     lambda: |-
       const int y = 10;
       const int c = it.get_width() / 2;
-      esphome::time::ESPTime time = id(esptime).now();
+      esphome::ESPTime time = id(esptime).now();
       size_t s = id(setting)->active_index().value_or(0);
       if (s == 1) {
         it.print(0, 0, id(font_iosevka_10), "Effekt");
