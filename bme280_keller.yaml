@@ -37,8 +37,8 @@ i2c:
 sensor:
   - platform: uptime
     name: "Keller Uptime"
-#  - platform: wifi_signal
-#    name: "Keller WiFi Signal"
+  - platform: wifi_signal
+    name: "Keller WiFi Signal"
 #  - platform: template
 #    name: "Keller Free Memory"
 #    lambda: return heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024;
