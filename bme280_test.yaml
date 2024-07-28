@@ -44,7 +44,7 @@ sensor:
 #    lambda: return heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024;
 #    unit_of_measurement: 'kB'
 #    state_class: measurement
-  - platform: bme280
+  - platform: bme280_i2c
     temperature:
       name: "Test Temperature"
       oversampling: 16x

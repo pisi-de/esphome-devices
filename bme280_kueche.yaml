@@ -35,7 +35,7 @@ i2c:
   
 # https://lastminuteengineers.com/bme280-arduino-tutorial/
 sensor:
-  - platform: bme280
+  - platform: bme280_i2c
     temperature:
       name: "Kueche Temperature"
       oversampling: 16x
