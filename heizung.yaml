@@ -26,8 +26,10 @@ ota:
  - platform: esphome
    password: !secret ota_password
 
-dallas:
-  - pin: D4
+one_wire:
+  - platform: gpio
+    id: one_wire_hub
+    pin: D4
 
 sensor:
   - platform: uptime
@@ -39,22 +41,28 @@ sensor:
   #  lambda: return heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024;
   #  unit_of_measurement: 'kB'
   #  state_class: measurement
-  - platform: dallas
+  - platform: dallas_temp
+    one_wire_id: one_wire_hub
     address: 0xca0722b159b6e828
     name: "VL"
-  - platform: dallas
+  - platform: dallas_temp
+    one_wire_id: one_wire_hub
     address: 0x990822b15bd09828
     name: "Boiler"
-  - platform: dallas
+  - platform: dallas_temp
+    one_wire_id: one_wire_hub
     address: 0xf90822b16fde1a28
     name: "RL"
-  - platform: dallas
+  - platform: dallas_temp
+    one_wire_id: one_wire_hub
     address: 0x010822b16508b628
     name: "Zirkulation"
-  - platform: dallas
+  - platform: dallas_temp
+    one_wire_id: one_wire_hub
     address: 0x1b0822b161e83928
     name: "WW VL"
-  - platform: dallas
+  - platform: dallas_temp
+    one_wire_id: one_wire_hub
     address: 0xee0722b154f9a528
     name: "WW RL"
     
