@@ -17,6 +17,9 @@ REM auto-upgrade
 python.exe -m pip install --upgrade pip
 python.exe -m pip install --upgrade esphome
 
+REM no extra upgrade of platformio. use the version referenced by esphome to avoid version conflicts.
+REM python.exe -m pip install --upgrade platformio
+
 REM display versions
 python --version
 pip --version
