@@ -36,6 +36,10 @@ i2c:
   
 # https://lastminuteengineers.com/bme280-arduino-tutorial/
 sensor:
+  - platform: uptime
+    name: "Bad Uptime"
+  - platform: wifi_signal
+    name: "Bad WiFi Signal"
   - platform: bme280_i2c
     temperature:
       name: "Bad Temperature"

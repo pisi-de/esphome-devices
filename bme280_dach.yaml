@@ -38,8 +38,8 @@ i2c:
 sensor:
   - platform: uptime
     name: "Dach Uptime"
-#  - platform: wifi_signal
-#    name: "Dach WiFi Signal"
+  - platform: wifi_signal
+    name: "Dach WiFi Signal"
 #  - platform: template
 #    name: "Dach Free Memory"
 #    lambda: return heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024;
