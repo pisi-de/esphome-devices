@@ -30,4 +30,6 @@ IF %ERRORLEVEL% NEQ 0 (
   pause something went wrong with heizung
 )
 
+pio system prune --cache -f
+
 pause all done
