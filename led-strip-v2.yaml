@@ -188,7 +188,11 @@ binary_sensor:
             then:
               lambda: |-
                 const auto active = id(led_strip).get_effect_name();
-                const auto effects = id(led_strip).get_effects();
+                std::vector<esphome::light::LightEffect*> effects = 
+                  std::vector<esphome::light::LightEffect*>(
+                    id(led_strip).get_effects().begin(),
+                    id(led_strip).get_effects().end()
+                  );
                 int nr = 0;
                 for (int idx = 0;idx < effects.size();idx++) {
                   if (active == effects.at(idx)->get_name()) {
@@ -251,7 +255,10 @@ binary_sensor:
             then:
               lambda: |-
                 const auto active = id(led_strip).get_effect_name();
-                const auto effects = id(led_strip).get_effects();
+                std::vector<esphome::light::LightEffect*> effects;
+                for (int i = 0; i < id(led_strip).get_effects().size(); ++i) {
+                  effects.push_back(id(led_strip).get_effects()[i]);
+                }
                 int nr = 0;
                 for (int idx = 0;idx < effects.size();idx++) {
                   if (active == effects.at(idx)->get_name()) {
@@ -317,16 +324,13 @@ binary_sensor:
       - select.next: setting
 
 light:
-  - platform: neopixelbus
+  - platform: esp32_rmt_led_strip
     name: "Led Strip"
     id: led_strip
     pin: GPIO26
-    method:
-      type: esp32_i2s
-    type: RGB
-    variant: WS2811
+    rgb_order: RGB
+    chipset: ws2811
     num_leds: 100
-    restore_mode: ALWAYS_ON
     effects:
       - addressable_rainbow:
           speed: 8
@@ -349,7 +353,7 @@ light:
           lambda: |-
             Color c = Color::random_color();
             const size_t pos = random_uint32() % it.size();
-            it[pos] = ESPColor(c.r, c.g, c.b);
+            it[pos] = Color(c.r, c.g, c.b);
       - addressable_lambda:
           name: "Color Shift"
           update_interval: 20ms
@@ -395,6 +399,7 @@ api:
   reboot_timeout: 0s
   encryption:
     key: !secret api_psk
+  homeassistant_services: true
 
 ota:
  - platform: esphome
