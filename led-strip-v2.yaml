@@ -201,7 +201,7 @@ binary_sensor:
                   }
                 }
                 nr = (nr + effects.size()) % (effects.size() + 1);
-                const auto name = nr == 0 ? "None" : effects.at(nr - 1)->get_name(); 
+                const auto name = nr == 0 ? StringRef::from_lit("None") : effects.at(nr - 1)->get_name(); 
                 id(led_strip).turn_on().set_effect(name).perform();
         - if: # Brightness
             condition:
@@ -267,7 +267,7 @@ binary_sensor:
                   }
                 }
                 nr = (nr + 1) % (effects.size() + 1);
-                const auto name = nr == 0 ? "None" : effects.at(nr - 1)->get_name(); 
+                const StringRef name = nr == 0 ? StringRef::from_lit("None") : effects.at(nr - 1)->get_name(); 
                 id(led_strip).turn_on().set_effect(name).perform();
         - if: # Brightness
             condition:
