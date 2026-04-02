@@ -188,7 +188,7 @@ binary_sensor:
             then:
               lambda: |-
                 const auto active = id(led_strip).get_effect_name();
-                std::vector<esphome::light::LightEffect*> effects = 
+                const auto effects = 
                   std::vector<esphome::light::LightEffect*>(
                     id(led_strip).get_effects().begin(),
                     id(led_strip).get_effects().end()
@@ -201,7 +201,7 @@ binary_sensor:
                   }
                 }
                 nr = (nr + effects.size()) % (effects.size() + 1);
-                const auto name = nr == 0 ? "None" : effects.at(nr - 1)->get_name(); 
+                const auto name = nr == 0 ? std::string("None") : std::string(effects.at(nr - 1)->get_name());
                 id(led_strip).turn_on().set_effect(name).perform();
         - if: # Brightness
             condition:
@@ -267,7 +267,7 @@ binary_sensor:
                   }
                 }
                 nr = (nr + 1) % (effects.size() + 1);
-                const auto name = nr == 0 ? "None" : effects.at(nr - 1)->get_name(); 
+                const auto name = nr == 0 ? std::string("None") : std::string(effects.at(nr - 1)->get_name());
                 id(led_strip).turn_on().set_effect(name).perform();
         - if: # Brightness
             condition:
