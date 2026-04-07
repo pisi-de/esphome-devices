@@ -62,6 +62,7 @@ wifi:
     ssid: !secret iot_ssid
     password: !secret iot_password
     use_address: !secret iot_ip_hyperion
+    min_auth_mode: WPA2
 
 api:
     password: !secret api_password
